@@ -1,0 +1,58 @@
+*{
+	box-sizing: border-box;
+}
+
+body{
+	margin: auto;
+}
+
+.bottom{
+	position: absolute;
+	bottom: 0;
+}
+
+.center{
+	left: 50%;
+	position: absolute;
+	transform: translateX(-50%);
+}
+
+.center.middle{
+	transform: translate(-50%, -50%);
+}
+
+.container{
+	position: relative;
+}
+
+#copyright{
+	text-align: center;
+}
+
+footer{
+	height: 100px;
+}
+
+.hidden{
+	display: none;
+}
+
+main{
+	height: calc(100vh - 100px);
+}
+
+.middle{
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.right{
+	position: absolute;
+	right: 0;
+}
+
+.top{
+	position: absolute;
+	top: 0;
+}
