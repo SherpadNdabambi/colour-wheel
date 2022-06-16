@@ -1,5 +1,6 @@
 :root {
-	--box-width: 60px;
+	--num-of-colours: 12;
+	--colour-wheel-radius: 180px;
 }
 
 *{
@@ -7,168 +8,14 @@
 }
 
 body{
-	/*counter-reset: box-number;*/
+	background-color: #F5F5F7;
+	counter-reset: box-number;
 	margin: auto;
 }
 
 .bottom{
 	position: absolute;
 	bottom: 0;
-}
-
-.box {
-	border: 1px solid black;
-	display: inline-block;
-	font-size: 0.7em;
-	height: var(--box-width);
-	margin: 0;
-	text-align: center;
-	width: var(--box-width);
-}
-
-/*
-.box::after {
-	content: counter(box-number);
-	counter-increment: box-number;
-}
-*/
-
-.box:nth-of-type(11n + 1) {
-	margin-left: calc(2 * var(--box-width));
-}
-
-.box:nth-of-type(8n + 2) {
-	margin-left: calc(1 * var(--box-width));
-}
-
-.box:nth-of-type(8n + 3) {
-	margin-left: calc(var(--box-width));
-}
-
-.box:nth-of-type(4n + 4):not(:nth-of-type(12)) {
-	margin-left: calc(0.5 * var(--box-width));
-}
-
-.box:nth-of-type(4n + 5) {
-	margin-left: calc(2 * var(--box-width));
-}
-
-.box:nth-of-type(7) {
-	margin-left: calc(3 * var(--box-width));
-}
-
-.box:nth-of-type(10n + 2) {
-	margin-top: calc(-0.5 * var(--box-width));
-}
-
-.box:nth-of-type(2),
-	:nth-of-type(3),
-	:nth-of-type(4),
-	:nth-of-type(5),
-	:nth-of-type(8),
-	:nth-of-type(9),
-	:nth-of-type(10),
-	:nth-of-type(11) {
-	transform: translateY(-50%);
-}
-
-.box:nth-of-type(1) {
-	background-color: rgb(255, 0, 0);
-}
-
-.box:nth-of-type(2) {
-	background-color: rgb(255, 0, 127.5);
-}
-
-.box:nth-of-type(3) {
-	background-color: rgb(255, 127.5, 0);
-}
-
-.box:nth-of-type(4) {
-	background-color: rgb(255, 0, 255);
-}
-
-.box:nth-of-type(5) {
-	background-color: rgb(255, 255, 0);
-}
-
-.box:nth-of-type(6) {
-	background-color: rgb(127.5, 0, 255);
-}
-
-.box:nth-of-type(7) {
-	background-color: rgb(127.5, 255, 0);
-}
-
-.box:nth-of-type(8) {
-	background-color: rgb(0, 0, 255);
-}
-
-.box:nth-of-type(9) {
-	background-color: rgb(0, 255, 0);
-}
-
-.box:nth-of-type(10) {
-	background-color: rgb(0, 127.5, 255);
-}
-
-.box:nth-of-type(11) {
-	background-color: rgb(0, 255, 127.5);
-}
-
-.box:nth-of-type(12) {
-	background-color: rgb(0, 255, 255);
-}
-
-.box:nth-of-type(1),
-	:nth-of-type(3),
-	:nth-of-type(5) {
-	border-radius: 50% 50% 50% 0;
-}
-
-.box:nth-of-type(7),
-	:nth-of-type(9),
-	:nth-of-type(11) {
-	border-radius: 0 50% 50%;
-}
-
-.box:nth-of-type(2),
-	:nth-of-type(4),
-	:nth-of-type(6) {
-	border-radius: 50% 50% 0;
-}
-
-.box:nth-of-type(8),
-	:nth-of-type(10),
-	:nth-of-type(12) {
-	border-radius: 50% 0 50% 50%;
-}
-
-.box:nth-of-type(1) {
-	transform: rotate(-45deg);
-}
-
-.box:nth-of-type(2),:nth-of-type(3) {
-	transform: translateY(-50%);
-}
-
-/*
-.box:nth-of-type(4) {
-	transform: translateY(-50%) rotate(-22.5deg);
-}
-
-.box:nth-of-type(5) {
-	transform: translateY(-50%) rotate(22.5deg);
-}
-*/
-
-.box:nth-of-type(6),
-	:nth-of-type(7) {
-	transform: translateY(-50%) rotate(-45deg);
-}
-
-.box:nth-of-type(12) {
-	transform: translateY(-100%) rotate(-45deg);
 }
 
 .center{
@@ -179,6 +26,123 @@ body{
 
 .center.middle{
 	transform: translate(-50%, -50%);
+}
+
+.colour-wheel {
+	height: 100px;
+	margin: 60px auto;
+	width: 100px;
+}
+
+#colourWheel::after {
+	background-color: rgb(255, 255, 255);
+}
+
+.colour-wheel::after {
+    border-radius: 50%;
+    content: "";
+	height: calc(2 * var(--colour-wheel-radius) - 200px);
+	left: 50%;
+    position: absolute;
+	top: 100px;
+	transform: translateX(-50%);
+	width: 160px;
+}
+
+.colour-wheel::before {
+	border: 30px solid;
+	border-radius: 50%;
+	content: "";
+	position: absolute;
+	top: -30px;
+    z-index: 1;
+}
+
+.colour-wheel fieldset {
+	border-style: solid;
+	border-width: calc(15px * var(--num-of-colours)) 50px;
+	margin-inline: 0;
+	padding-block: 0;
+	padding-inline: 0;
+	position: absolute;
+}
+
+/*
+.colour-wheel span {
+	content: counter(box-number);
+	counter-increment: box-number;
+}
+*/
+
+.colour-wheel fieldset:nth-last-of-type(1) {
+	border-color: rgb(255, 0, 0) transparent transparent transparent;
+	transform: rotate(calc(0 * 360deg/var(--num-of-colours)));
+}
+
+.colour-wheel fieldset:nth-last-of-type(2) {
+	border-color: rgb(255, 127.5, 0) transparent transparent transparent;
+	transform: rotate(calc(1 * 360deg/var(--num-of-colours)));
+}
+
+.colour-wheel fieldset:nth-last-of-type(3) {
+	border-color: rgb(255, 255, 0) transparent transparent transparent;
+	transform: rotate(calc(2 * 360deg/var(--num-of-colours)));
+}
+
+.colour-wheel fieldset:nth-last-of-type(4) {
+	border-color: rgb(127.5, 255, 0) transparent transparent transparent;
+	transform: rotate(calc(3 * 360deg/var(--num-of-colours)));
+}
+
+.colour-wheel fieldset:nth-last-of-type(5) {
+	border-color: rgb(0, 255, 0) transparent transparent transparent;
+	transform: rotate(calc(4 * 360deg/var(--num-of-colours)));
+}
+
+.colour-wheel fieldset:nth-last-of-type(6) {
+	border-color: rgb(0, 255, 127.5) transparent transparent transparent;
+	transform: rotate(calc(5 * 360deg/var(--num-of-colours)));
+}
+
+.colour-wheel fieldset:nth-last-of-type(7) {
+	border-color: rgb(0, 255, 255) transparent transparent transparent;
+	transform: rotate(calc(6 * 360deg/var(--num-of-colours)));
+}
+
+.colour-wheel fieldset:nth-last-of-type(8) {
+	border-color: rgb(0, 127.5, 255) transparent transparent transparent;
+	transform: rotate(calc(7 * 360deg/var(--num-of-colours)));
+}
+
+.colour-wheel fieldset:nth-last-of-type(9) {
+	border-color: rgb(0, 0, 255) transparent transparent transparent;
+	transform: rotate(calc(8 * 360deg/var(--num-of-colours)));
+}
+
+.colour-wheel fieldset:nth-last-of-type(10) {
+	border-color: rgb(127.5, 0, 255) transparent transparent transparent;
+	transform: rotate(calc(9 * 360deg/var(--num-of-colours)));
+}
+
+.colour-wheel fieldset:nth-last-of-type(11) {
+	border-color: rgb(255, 0, 255) transparent transparent transparent;
+	transform: rotate(calc(10 * 360deg/var(--num-of-colours)));
+}
+
+.colour-wheel fieldset:nth-last-of-type(12) {
+	border-color: rgb(255, 0, 127.5) transparent transparent transparent;
+	transform: rotate(calc(11 * 360deg/var(--num-of-colours)));
+}
+
+#colourWheel::before {
+	border-color: rgb(255, 255, 255);
+	height: calc(2 * var(--colour-wheel-radius));
+	left: calc(-1 * (var(--colour-wheel-radius) / 1.5 + 40px));
+	width: calc(2 * var(--colour-wheel-radius));
+}
+
+#colourWheelContainer {
+	margin-bottom: calc(2 * var(--colour-wheel-radius) - 100px + 60px);
 }
 
 .container{
@@ -201,6 +165,11 @@ h1 {
 	display: none;
 }
 
+legend {
+	position: absolute;
+	top: -50px;
+}
+
 main{
 	font-family: sans-serif;
 	/*
@@ -214,10 +183,6 @@ main{
 	transform: translateY(-50%);
 }
 
-p {
-	word-break: break-word;
-}
-
 .right{
 	position: absolute;
 	right: 0;
@@ -226,11 +191,6 @@ p {
 .top{
 	position: absolute;
 	top: 0;
-}
-
-#wheel-container {
-	width: calc(5 * var(--box-width));
-	margin: auto;
 }
 
 /* Media queries */
